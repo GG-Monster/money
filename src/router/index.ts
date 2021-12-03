@@ -10,12 +10,12 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path: '/money',
-        component: Money
-    },
-    {
         path: '/',
         redirect: '/money'
+    },
+    {
+        path: '/money',
+        component: Money
     },
     {
         path: '/labels',
