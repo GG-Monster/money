@@ -2,12 +2,12 @@
   <nav class="nav">
     <router-link to="/money" class="item" active-class="selected">
       <Icon name="money"></Icon>
-      钱包
+      记账
     </router-link>
     <router-link to="/labels" class="item" active-class="selected">
-      //active-class="selected" 路由激活状态
+<!--active-class="selected" 路由激活状态-->
       <Icon name="label"></Icon>
-      标签
+      +标签
     </router-link>
     <router-link to="/statistics" class="item" active-class="selected">
       <Icon name="statistics"></Icon>
