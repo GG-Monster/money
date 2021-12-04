@@ -11,3 +11,9 @@ export default {
 
 }
 </script>
+<style lang="scss" scoped>
+@import "~@/assets/styles/help.scss";
+p{
+  color: $red;
+}
+</style>

@@ -1,8 +1,10 @@
+/* eslint-disable */
 // module.exports = {
 //   lintOnSave: false
 const path = require('path');
 // Require statement not part of import statement.(@typescript-eslint/no-var-requires)
 //解决办法.eslintrc.js中的 rules 属性新增以下内容：'@typescript-eslint/no-var-requires': 0
+//或者在vue.config.js文件第一行加上 /* eslint-disable */
 module.exports = {
     lintOnSave: false,
     chainWebpack: config => {
