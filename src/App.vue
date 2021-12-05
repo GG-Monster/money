@@ -5,17 +5,15 @@
 </template>
 
 <style lang="scss">
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+@import "~@/assets/styles/reset.scss";
+@import "~@/assets/styles/global.scss";
+
+body{
+  font-family: $font-hei;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  color: #333;
 }
 
 #nav {
@@ -30,8 +28,5 @@
     }
   }
 }
-a{
-  text-decoration:none;
-  color: inherit;
-}
+
 </style>
