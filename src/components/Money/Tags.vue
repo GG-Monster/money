@@ -2,10 +2,11 @@
   <div class="flow-auto">
     <div class="tags">
       <ul class="current">
-        <li>衣</li>
-        <li>食</li>
-        <li>住</li>
-        <li>行</li>
+        <li v-for="tag in dataSource" :key="tag"
+            @click="selectWhether(tag)"
+        :class="{selected:(selectedTags.indexOf(tag)>=0)}"
+        >{{tag}}</li>
+
       </ul>
       <div class="new">
         <button> +新增标签</button>
@@ -15,8 +16,20 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: "Tags"
+import Vue from "vue";
+import {Component,Prop} from "vue-property-decorator";
+@Component
+export default class Tags extends Vue{
+  @Prop() dataSource:string[]|undefined;
+  selectedTags:string[]=[];
+  selectWhether(tag:string){
+    if(this.selectedTags.indexOf(tag)>=0){
+      this.selectedTags.splice(this.selectedTags.indexOf(tag),1);
+    }else{
+      this.selectedTags.push(tag);
+
+    }
+  }
 }
 </script>
 
@@ -39,6 +52,10 @@ export default {
       padding: 0 16px;
       margin-right: 12px;
       margin-top: 4px;
+      &.selected{
+        background: #2c3e50;
+        color: whitesmoke;
+      }
 
     }
   }
