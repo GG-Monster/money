@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import {Component,Prop} from "vue-property-decorator";
+import {Component,Prop,Watch} from "vue-property-decorator";
 @Component
 export default class Tags extends Vue{
   @Prop() dataSource:string[]|undefined;
@@ -37,6 +37,10 @@ if(name===''){
 }else if(this.dataSource){
   this.$emit('update:dataSource',[...this.dataSource,name])
 }
+  }
+  @Watch('selectedTags')
+  onTagChanged(selectedTags:string[]){
+    this.$emit('update:value',selectedTags)
   }
 }
 </script>
