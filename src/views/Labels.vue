@@ -8,7 +8,7 @@
     </router-link>
   </div>
   <div class="createTag-container">
-    <Button @click="createTag">新建标签</Button>
+    <Button @click.native="createTag">新建标签</Button>
   </div>
 </Layout>
 </template>
