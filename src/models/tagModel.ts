@@ -12,7 +12,7 @@ type TagModel={
 const tagModel:TagModel={
     data:[],
     fetch(){
-        this.data=JSON.parse(window.localStorage.getItem(localStorageKeyName)||'[]') as RecordItem[];
+        this.data=JSON.parse(window.localStorage.getItem(localStorageKeyName)||'[]');
 return this.data;
     },
     create(name:string){

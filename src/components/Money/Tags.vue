@@ -50,6 +50,7 @@ if(name===''){
   overflow: auto;
 }
 .tags {
+  background: white;
   font-size: 14px;
   > .current {
     display: flex;

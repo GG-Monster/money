@@ -8,17 +8,19 @@
     </router-link>
   </div>
   <div class="createTag-container">
-    <button class="createTag" @click="createTag">新建标签</button>
+    <Button @click="createTag">新建标签</Button>
   </div>
 </Layout>
 </template>
 <script lang="ts">
-
+import Button from "@/components/Button.vue";
 import Vue from "vue";
 import {Component} from "vue-property-decorator";
 import tagModel from "@/models/tagModel";
 
-@Component
+@Component({
+  components: {Button,}
+})
 export default class Labels extends Vue{
 tags=tagModel.fetch();
 createTag(){
@@ -54,18 +56,11 @@ console.log(tagModel.data);
     }
   }
 }
-.createTag{
-  background: #767676;
-  color: white;
-  border-radius: 4px;
-  border: none;
-  height: 40px;
-  padding: 0 16px;
-&-container{
+.createTag-container{
     text-align: center;
     padding: 16px;
     margin-top: 44-16px;
-}
-}
+  }
+
 
 </style>
