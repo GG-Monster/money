@@ -14,11 +14,8 @@
     <div class="deleteTag-container">
       <Button class="delete" @click.native="remove">删除标签</Button>
     </div>
-
   </Layout>
-
 </template>
-
 <script lang="ts">
 import Vue from "vue";
 import {Component} from "vue-property-decorator";
@@ -29,8 +26,7 @@ import Button from "@/components/Button.vue";
   components: {FormItem, Button}
 })
 export default class EditLabel extends Vue {
-  tag?:Tag = undefined;
-
+  tag?:{id:string,name:string} = undefined;
   created() {
     this.tag=window.findTag(this.$route.params.id);
     if (!this.tag) {

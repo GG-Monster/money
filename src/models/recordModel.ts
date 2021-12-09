@@ -15,6 +15,7 @@ return this.data;
         const record2=clone(record);
         record2.createdTime=new Date();
         this.data.push(record2);
+        this.save();
     }
 }
 export default recordModel;

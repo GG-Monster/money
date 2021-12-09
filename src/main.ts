@@ -7,11 +7,13 @@ import Nav from "@/components/Nav.vue";
 import Layout from "@/components/Layout.vue";
 import Icon from "@/components/Icon.vue";
 import tagModel from "@/models/tagModel";
+import recordModel from "@/models/recordModel";
 Vue.component('Nav',Nav);
 Vue.component('Layout',Layout);
 Vue.component('Icon',Icon);
 
 Vue.config.productionTip = false
+//tag store
 window.tagList=tagModel.fetch();
 window.findTag=(id:string)=>{
   return window.tagList.filter(t=>t.id===id)[0];
@@ -30,6 +32,12 @@ window.removeTag=(id:string)=>{
 window.updateTag=(id:string,name:string)=>{
  return tagModel.update(id,name);
 }
+//record store
+window.recordList=recordModel.fetch();
+window.createRecord=(record:RecordItem)=>{
+  recordModel.create(record);
+}
+
 new Vue({
   router,
   store,

@@ -18,9 +18,14 @@ type TagModel={
     save:()=>void
 }
 interface Window {
+    //tag
     tagList: Tag[];
     createTag: (name: string) => void;
     removeTag:(id:string)=>boolean;
     updateTag:(id:string,name:string)=>'success'|'notfound'|'duplicated';
     findTag:(id:string)=>Tag|undefined;
+    //record
+    recordList:RecordItem[];
+    createRecord:(record:RecordItem)=>void;
+
 }
