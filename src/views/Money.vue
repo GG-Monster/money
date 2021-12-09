@@ -28,7 +28,7 @@ export default class Money extends Vue {
     tags:[],
     notes:'',
     type:'-',
-    amount:0
+    amount:0,
   }
   onUpdateAmount(value:string){
 this.record.amount=parseFloat(value);
