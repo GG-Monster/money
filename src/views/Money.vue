@@ -49,7 +49,7 @@ this.recordList.push(record2);
   }
   @Watch('recordList')
   onRecordListChange(){
-  recordModel.save(this.recordList);
+  recordModel.save();
   }
 }
 </script>
