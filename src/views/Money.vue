@@ -43,9 +43,7 @@ this.record.amount=parseFloat(value);
     this.record.tags=value;
   }
   saveRecord(){
-    const record2=recordModel.clone(this.record);
-    record2.createdTime=new Date();
-this.recordList.push(record2);
+recordModel.create(this.record);
   }
   @Watch('recordList')
   onRecordListChange(){
