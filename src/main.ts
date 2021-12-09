@@ -13,6 +13,14 @@ Vue.component('Icon',Icon);
 
 Vue.config.productionTip = false
 window.tagList=tagModel.fetch();
+window.createTag=(name:string)=>{
+  const message=tagModel.create(name);
+  if(message==='duplicated'){
+    window.alert('标签名重复！！！')
+  }else{
+    window.alert('标签创建成功！');
+  }
+}
 new Vue({
   router,
   store,
