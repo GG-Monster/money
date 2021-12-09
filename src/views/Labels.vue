@@ -22,7 +22,7 @@ import tagModel from "@/models/tagModel";
   components: {Button,}
 })
 export default class Labels extends Vue{
-tags=tagModel.fetch();
+tags=window.tagList;
 createTag(){
 const name =window.prompt('请输入要创建的标签');
 if(name){

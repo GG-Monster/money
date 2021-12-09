@@ -30,7 +30,7 @@ import Button from "@/components/Button.vue";
   components: {FormItem, Button}
 })
 export default class EditLabel extends Vue {
-  tag?: { id: string, name: string } = undefined;
+  tag?: Tag = undefined;
 
   created() {
     const id = this.$route.params.id;
@@ -57,7 +57,6 @@ export default class EditLabel extends Vue {
         window.alert('删除失败')
       }
     }
-    console.log("点击了");
   }
   goBack(){
     this.$router.back();

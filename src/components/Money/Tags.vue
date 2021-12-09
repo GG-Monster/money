@@ -5,7 +5,7 @@
         <li v-for="tag in dataSource" :key="tag"
             @click="selectWhether(tag)"
         :class="{selected:(selectedTags.indexOf(tag)>=0)}"
-        >{{tag}}</li>
+        >{{tag.name}}</li>
 
       </ul>
       <div class="new">
