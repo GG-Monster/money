@@ -13,6 +13,9 @@ Vue.component('Icon',Icon);
 
 Vue.config.productionTip = false
 window.tagList=tagModel.fetch();
+window.findTag=(id:string)=>{
+  return window.tagList.filter(t=>t.id===id)[0];
+}
 window.createTag=(name:string)=>{
   const message=tagModel.create(name);
   if(message==='duplicated'){
@@ -20,6 +23,12 @@ window.createTag=(name:string)=>{
   }else{
     window.alert('标签创建成功！');
   }
+}
+window.removeTag=(id:string)=>{
+    return tagModel.remove(id);
+}
+window.updateTag=(id:string,name:string)=>{
+ return tagModel.update(id,name);
 }
 new Vue({
   router,
