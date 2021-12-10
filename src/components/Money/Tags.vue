@@ -9,7 +9,7 @@
 
       </ul>
       <div class="new">
-        <button @click="createTag"> +新增标签</button>
+        <button @click="createTag"> 新增标签</button>
       </div>
     </div>
   </div>
@@ -17,31 +17,29 @@
 
 <script lang="ts">
 import Vue from "vue";
-import {Component,Prop,Watch} from "vue-property-decorator";
+import store from "@/store/index2";
+import {Component,Prop,} from "vue-property-decorator";
 @Component
 export default class Tags extends Vue{
   @Prop() dataSource:string[]|undefined;
   selectedTags:string[]=[];
+
   selectWhether(tag:string){
     if(this.selectedTags.indexOf(tag)>=0){
       this.selectedTags.splice(this.selectedTags.indexOf(tag),1);
     }else{
       this.selectedTags.push(tag);
-
     }
+    this.$emit('update:value',this.selectedTags);
   }
   createTag(){
     const name=window.prompt('请输入标签名！');
-if(name===''){
+if(!name){
   window.alert('标签名不为空！！！！');
-}else if(this.dataSource){
-  this.$emit('update:dataSource',[...this.dataSource,name])
+  return;
 }
-  }
-  @Watch('selectedTags')
-  onTagChanged(selectedTags:string[]){
-    this.$emit('update:value',selectedTags)
-  }
+store.createTag(name);
+}
 }
 </script>
 

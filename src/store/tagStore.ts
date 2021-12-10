@@ -55,4 +55,5 @@ const tagStore = {
         window.localStorage.setItem(localStorageKeyName,JSON.stringify(this.tagList));
     }
 }
+tagStore.fetchTags();
 export default tagStore;
