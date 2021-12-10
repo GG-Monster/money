@@ -17,13 +17,10 @@
 
 <script lang="ts">
 import Vue from "vue";
-import store from "@/store/index2";
-import {Component,Prop,} from "vue-property-decorator";
+import {Component,} from "vue-property-decorator";
 @Component
 export default class Tags extends Vue{
-  @Prop() dataSource:string[]|undefined;
   selectedTags:string[]=[];
-
   selectWhether(tag:string){
     if(this.selectedTags.indexOf(tag)>=0){
       this.selectedTags.splice(this.selectedTags.indexOf(tag),1);
@@ -38,7 +35,8 @@ if(!name){
   window.alert('标签名不为空！！！！');
   return;
 }
-store.createTag(name);
+// TODO
+// store.createTag(name);
 }
 }
 </script>
