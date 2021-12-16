@@ -16,20 +16,21 @@
 import Button from "@/components/Button.vue";
 import Vue from "vue";
 import {Component} from "vue-property-decorator";
+import TagHelper from "@/mixins/TagHelper";
+import { mixins } from "vue-class-component";
 
 @Component({
-  components: {Button,}
+  components: {Button,},
+  computed:{
+    tags(){
+      return this.$store.state.tagList;
+    }
+  }
 })
-export default class Labels extends Vue{
-  // TODO
-// tags=store.tagList;
-createTag(){
-const name =window.prompt('请输入要创建的标签');
-if(name){
-  //TODO
-  // store.createTag(name);
-}
-}
+export default class Labels extends mixins(TagHelper) {
+  beforeCreate() {
+    this.$store.commit('fetchTags');
+  }
 }
 </script>
 <style lang="scss" scoped>
