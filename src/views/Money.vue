@@ -3,7 +3,7 @@
     <NumberPad  @update:value="onUpdateAmount" @submit="saveRecord"/>
 <!--    <Types :value.sync="record.type" />-->
     <Tabs :data-source="recordTypeList" :value.sync="record.type"/>
-    <FormItem field-name="备注" placeholder="请输入备注" @update:value="onUpdateNote" />
+    <FormItem field-name="备注" placeholder="请输入备注" @update:value="onUpdateNotes" />
     <Tags :data-source.sync="tags" @update:value="onUpdateTag"/>
   </Layout>
 </template>
@@ -34,7 +34,7 @@ export default class Money extends Vue {
   created(){
     this.$store.commit('fetchRecords');
   }
-  onUpdateNote(value:string){
+  onUpdateNotes(value:string){
     this.record.notes=value;
   }
   onUpdateAmount(value:number){
@@ -49,4 +49,6 @@ export default class Money extends Vue {
   }
 }
 </script>
+<style lang="scss" scoped>
 
+</style>
