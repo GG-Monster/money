@@ -3,8 +3,14 @@ type RecordItem ={
     notes:string,
     type:string,
     amount:number,
-    createdTime?:Date
+    createdTime?:string
 }
+type RootState={
+    recordList:RecordItem[],
+    tagList:Tag[],
+    currentTag?:Tag
+}
+
 type Tag={
     id:string,
     name:string

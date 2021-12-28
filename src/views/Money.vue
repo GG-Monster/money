@@ -37,6 +37,13 @@ export default class Money extends Vue {
   onUpdateNote(value:string){
     this.record.notes=value;
   }
+  onUpdateAmount(value:number){
+    this.record.amount=value;
+  }
+  // onUpdateTag(value:[]){
+  //   console.log(value);
+  //   this.record.tags=value;
+  // }
   saveRecord(){
     this.$store.commit('createRecord',this.record);
   }

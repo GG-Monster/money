@@ -51,7 +51,7 @@ this.$emit('update:value',item.value);
 
   &-item {
     width: 50%;
-    height: 64px;
+    //height: 64px;
     display: flex;
     justify-content: center;
     align-items: center;
