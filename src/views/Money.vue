@@ -5,6 +5,7 @@
     <Tabs :data-source="recordTypeList" :value.sync="record.type"/>
     <FormItem field-name="备注" placeholder="请输入备注" @update:value="onUpdateNotes" />
     <Tags :data-source.sync="tags" @update:value="onUpdateTag"/>
+<!--    上面Tags把 :data-source.sync="tags" 删了，暂时没影响-->
   </Layout>
 </template>
 
@@ -40,10 +41,10 @@ export default class Money extends Vue {
   onUpdateAmount(value:number){
     this.record.amount=value;
   }
-  // onUpdateTag(value:[]){
-  //   console.log(value);
-  //   this.record.tags=value;
-  // }
+  onUpdateTag(value:[]){
+    console.log(value);
+    this.record.tags=value;
+  }
   saveRecord(){
     this.$store.commit('createRecord',this.record);
   }
