@@ -27,7 +27,10 @@ module.exports = {
             }
         }
     ],
-    "globals":{
-        "__WebpackModuleApi":"writable"
+    "globals": {
+        "__WebpackModuleApi": "writable",
+        "RootState": true,
+        "Tag": true,
+        "RecordItem":true
     }
 }
