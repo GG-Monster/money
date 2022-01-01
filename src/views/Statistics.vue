@@ -2,10 +2,10 @@
   <Layout>
     <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
 
-    <Tabs class-prefix="interval" :data-source="intervalList" :value.sync="interval"/>
       <ol>
         <li v-for="(group,index) in groupList" :key="index">
-          <h3 class="title">{{ beautify(group.title) }}</h3>
+          <h3 class="title">{{ beautify(group.title) }}
+           <span>¥ {{group.total}}</span></h3>
           <ol>
             <li class="record" v-for="item in group.items" :key="item.id">
              <span>{{tagString(item.tags)}}</span>
@@ -31,7 +31,6 @@
 .record{
   background: white;
   @extend %item;
-
 }
 .notes{
   margin-right: auto;
@@ -40,13 +39,21 @@
 }
 ::v-deep {
   .type-tabs-item {
-    background: white;
+    background: #c4c4c4;
+    height: 42px;
 
     &.selected {
-      background: #c4c4c4;
+      background: #999;
 
       &::after {
-        display: none;
+        //display: none;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #111;
       }
     }
   }
@@ -61,7 +68,7 @@
 import Vue from "vue";
 import {Component} from "vue-property-decorator";
 import Tabs from "@/components/Tabs.vue"
-import intervalList from '@/constants/intervalList';
+// import intervalList from '@/constants/intervalList';
 import recordTypeList from '@/constants/recordTypeList';
 // import RecordStore from "@/store/recordStore";
 import dayjs from "dayjs";
@@ -100,24 +107,27 @@ export default class Statistics extends Vue {
     }
     type HashTableValue = { title: string, items: RecordItem[]};
     // const hashTable: { title: string,items: HashTableValue };
-    const newList=clone(recordList).sort((a:any,b:any)=>dayjs(b.createdTime).valueOf()-dayjs(a.createdTime).valueOf());
+    const newList=clone(recordList).filter(r=>r.type===this.type).sort((a:any,b:any)=>dayjs(b.createdTime).valueOf()-dayjs(a.createdTime).valueOf());
     // for (let i = 0; i < recordList.length; i++) {
     //   const [date, time] = recordList[i].createdTime!.split('T');
     //   hashTable[date] = hashTable[date] || {title: date, items: []};
     //   hashTable[date].items.push(recordList[i]);
     // }
-    const group=[{title:dayjs(newList[0].createdTime),items:[newList[0]]}];
+    type Result={title:string,total?:number,items:RecordItem[]}[];
+    const result:Result=[{title:dayjs(newList[0].createdTime).format('YYYY-MM-DD'),items:[newList[0]]}];
     for(let i=1;i<newList.length;i++){
       const current=newList[i];
-      const last =group[group.length-1];
+      const last =result[result.length-1];
       if(dayjs(last.title).isSame(dayjs(current.createdTime),'day')){
         last.items.push(current);
       }
       else{
-        group.push({title:dayjs(current.createdTime),items:[current]});
+        result.push({title:dayjs(current.createdTime).format('YYYY-MM-DD'),items:[current]});
       }
     }
-    return group;
+    result.map(group=>{group.total=group.items.reduce((sum,item)=>sum+item.amount,0)});
+
+    return result;
   }
   beforeCreate() {
     this.$store.commit('fetchRecords');
@@ -126,8 +136,6 @@ export default class Statistics extends Vue {
   }
 
   type = '-';
-  interval = 'day';
-  intervalList = intervalList;
   recordTypeList = recordTypeList;
 }
 </script>
