@@ -2,7 +2,7 @@
   <Layout>
     <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
 
-      <ol>
+      <ol v-if="groupList.length>0">
         <li v-for="(group,index) in groupList" :key="index">
           <h3 class="title">{{ beautify(group.title) }}
            <span>¥ {{group.total}}</span></h3>
@@ -15,9 +15,14 @@
           </ol>
         </li>
       </ol>
+    <div v-else class="norecord">无记录</div>
   </Layout>
 </template>
 <style scoped lang="scss">
+.norecord{
+  padding: 16px;
+  text-align: center;
+}
 %item{
   padding: 8px 16px;
   line-height: 24px;
@@ -73,8 +78,6 @@ import recordTypeList from '@/constants/recordTypeList';
 // import RecordStore from "@/store/recordStore";
 import dayjs from "dayjs";
 import clone from "@/lib/clone";
-const api=dayjs();
-console.log(api);
 @Component({
   components: {
     Tabs,
@@ -102,10 +105,6 @@ export default class Statistics extends Vue {
   }
   get groupList() {
     const {recordList} = this;
-    if(recordList.length===0){
-      return [];
-    }
-    type HashTableValue = { title: string, items: RecordItem[]};
     // const hashTable: { title: string,items: HashTableValue };
     const newList=clone(recordList).filter(r=>r.type===this.type).sort((a:any,b:any)=>dayjs(b.createdTime).valueOf()-dayjs(a.createdTime).valueOf());
     // for (let i = 0; i < recordList.length; i++) {
@@ -113,6 +112,9 @@ export default class Statistics extends Vue {
     //   hashTable[date] = hashTable[date] || {title: date, items: []};
     //   hashTable[date].items.push(recordList[i]);
     // }
+    if(newList.length===0){
+      return [];
+    }
     type Result={title:string,total?:number,items:RecordItem[]}[];
     const result:Result=[{title:dayjs(newList[0].createdTime).format('YYYY-MM-DD'),items:[newList[0]]}];
     for(let i=1;i<newList.length;i++){

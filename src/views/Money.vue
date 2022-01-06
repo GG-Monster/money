@@ -3,8 +3,12 @@
     <NumberPad  @update:value="onUpdateAmount" @submit="saveRecord"/>
 <!--    <Types :value.sync="record.type" />-->
     <Tabs :data-source="recordTypeList" :value.sync="record.type"/>
-    <FormItem field-name="备注" placeholder="请输入备注" @update:value="onUpdateNotes" />
-    <Tags :data-source.sync="tags" @update:value="onUpdateTag"/>
+    <FormItem field-name="备注"
+              :value="record.notes"
+              placeholder="请输入备注"
+              @update:value="onUpdateNotes" />
+    <Tags :data-source.sync="tags"
+          @update:value="onUpdateTag"/>
   </Layout>
 </template>
 
@@ -44,7 +48,11 @@ export default class Money extends Vue {
     this.record.tags=value;
   }
   saveRecord(){
+        if (!this.record.tags||this.record.tags.length===0){
+         return window.alert('请选择标签！');
+        }
     this.$store.commit('createRecord',this.record);
+        this.record.notes='';
   }
 }
 </script>
