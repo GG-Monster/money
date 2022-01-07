@@ -106,7 +106,7 @@ export default class Statistics extends Vue {
   get groupList() {
     const {recordList} = this;
     // const hashTable: { title: string,items: HashTableValue };
-    const newList=clone(recordList).filter(r=>r.type===this.type).sort((a:any,b:any)=>dayjs(b.createdTime).valueOf()-dayjs(a.createdTime).valueOf());
+    const newList=clone(recordList).filter((r:RecordItem)=>r.type===this.type).sort((a:any,b:any)=>dayjs(b.createdTime).valueOf()-dayjs(a.createdTime).valueOf());
     // for (let i = 0; i < recordList.length; i++) {
     //   const [date, time] = recordList[i].createdTime!.split('T');
     //   hashTable[date] = hashTable[date] || {title: date, items: []};
