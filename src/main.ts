@@ -26,10 +26,10 @@ window.onload=function(){
 if (document.documentElement.clientWidth>500){
   window.alert('为保证浏览效果，请使用手机打开页面！');
   const img=document.createElement('img');
-  img.src='/qrcode.png';
+  img.src='/money-website/qr_code.png';
   img.style.position='fixed';
   img.style.left='50%';
-  img.style.top='50%';
+  img.style.top='60%';
   img.style.transform='translate(-50%,-50%)';
   document.body.appendChild(img);
 }

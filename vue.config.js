@@ -6,7 +6,9 @@ const path = require('path');
 //解决办法.eslintrc.js中的 rules 属性新增以下内容：'@typescript-eslint/no-var-requires': 0
 //或者在vue.config.js文件第一行加上 /* eslint-disable */
 module.exports = {
-    publicPath:process.env.NODE_ENV==='production'?'/money-website/':'/',
+    publicPath: process.env.NODE_ENV === 'production'
+        ? '/money-website/'
+        : '/',
     lintOnSave: false,
     chainWebpack: config => {
         const dir = path.resolve(__dirname, 'src/assets/icons')
