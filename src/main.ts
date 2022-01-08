@@ -29,7 +29,7 @@ if (document.documentElement.clientWidth>500){
   img.src='/moneyWebsite/qr_code.png';
   img.style.position='fixed';
   img.style.left='50%';
-  img.style.top='60%';
+  img.style.top='50%';
   img.style.transform='translate(-50%,-50%)';
   document.body.appendChild(img);
 }
